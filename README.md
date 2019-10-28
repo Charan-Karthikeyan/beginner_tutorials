@@ -1,6 +1,6 @@
-## Publisher and Subscriber ROS cpp
+### Publisher and Subscriber ROS cpp
 
-#Overview
+#O#verview
 
 This a basic introduction to the usage of ROS nodes with the Publisher and the Subscriber. 
 The publisher and the subscriber have also been modified to C++11 standards and checked using the cppcheck and the cpplint.

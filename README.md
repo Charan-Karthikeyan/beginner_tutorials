@@ -55,7 +55,7 @@ or
 ```
 roslaunch beginner_tutorials begineer_tutorials.launch
 ```
-<<<<<<< HEAD
+
 This runs the talker and subscriber at default rate of 20Hz
 The talker and listner are launched in different terminals.
 In another terminal run the command to change the message in the talker

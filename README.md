@@ -91,7 +91,20 @@ rqt_console
 ```
 
 #Dependencies and Assumptions
+
 ROS Kinetic is installed in the computer and working correctly and there is no other package with the same name in the workspace.
+
+#Add tag to the branch
+Run this command inside the beginner_tutotials to create tag for the branch
+```
+git tag -a week10hw -m "week10_hw tag"
+```
+to check the tags. Type in 
+```
+git tag
+```
+this will show the tag of the branch.
+
 
 
 

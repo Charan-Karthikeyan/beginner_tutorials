@@ -25,24 +25,34 @@ catkin_make
 ```
 
 #Executiong the Package
-
-Source the workspace
+Open a terminal and run the command
 ```
-~ ./catkin_ws/devel/setup.bash
+sudo gedit ~/.bashrc
 ```
 
+Add the following lines to source the workspace
+```
+source ./catkin_ws/devel/setup.bash
+```
+Save the file and exit.Then open a terminal and run source the bashrc file
+```
+source ~/.bashrc
+```
 Open a new terminal tab and run roscore
 ```
 roscore
 ```
-Go back to the terminal we setup the workspace
+Then in an unused terminal
 ```
-rosrun beginner_tutorials talker
+roslaunch beginner_tutorials begineer_tutorials.launch frequency:=10
 ```
-Open a new tab and runther to source the workspace then run the command
+The talker and listner are launched in different terminals.
+In another terminal run the command to change the message in the talker
 ```
-rosun beginner_tutorials listner
+rosservice call /customeMsg "hello" 
 ```
+This changes the output as follows
+
 #Results from cpplint and cppcheck
 To get the output from the cppcheck
 ```
@@ -56,7 +66,7 @@ cpplint $( find . -name \*.hpp -or -name \*.cpp | grep -vE -e "^./build/" -e "^.
 
 ```
 The results from the checks have been added as a text file.
-  
+![Image of output]()  
 #Dependencies and Assumptions
 ROS Kinetic is installed in the computer and working correctly and there is no other package with the same name in the workspace.
 

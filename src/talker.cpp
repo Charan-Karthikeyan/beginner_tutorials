@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008, Morgan Quigley and Willow Garage, Inc.
+ * Copyright (C) 2017, Charan Karthikeyan Parthasarathy Vasanthi.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -24,19 +24,44 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-#include <sstream>
-// %Tag(FULLTEXT)%
-// %Tag(ROS_HEADER)%
-#include "ros/ros.h"
-// %EndTag(ROS_HEADER)%
-// %Tag(MSG_HEADER)%
-#include "std_msgs/String.h"
-// %EndTag(MSG_HEADER)%
 
+/**
+ * @file talker.cpp
+ * @author Charan Karthikeyan Parthasarathy Vasanthi
+ * @copyright MIT
+ * @brief Publisher for simple publishing and subcribing from ros tutorial page
+*/
+
+#include <sstream>
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include "beginner_tutorials/custome_message_service.h"
+/**
+ * Message that is to be changed to
+*/
+extern std::string defaultMessage = "This ouput has been changed by Charan";
+
+/**
+ * @brief Fuction to changing the text using the custome_message_service service
+ * @param request-The request sent to the service
+ * @param response-The response by te service to the client
+ * @return bool
+*/
+bool customeMsg(begginer_tutorials::custome_message_service::Request &request,
+		beginner_tutorials::custome_message_service::Response &response) {
+  defaultMessage = request.inp_message;
+  ROS_WARN_STREAM("Changed to the string set by Charan to");
+  response.out_message = request.inp_message;
+  return true;
+}
 
 
 /**
  * This tutorial demonstrates simple sending of messages over the ROS system.
+ * @brief The main function of the talker
+ * @param argc- The value of argc
+ * @param argv- The value of argv
+ * @return None
  */
 int main(int argc, char **argv) {
   /**
@@ -52,7 +77,23 @@ int main(int argc, char **argv) {
 // %Tag(INIT)%
   ros::init(argc, argv, "talker");
 // %EndTag(INIT)%
-
+  int freq = 20;
+  if (argc > 1) {
+    freq = atoi(argv[1]);
+  }
+  if (freq > 0) {
+    ROS_DEBUG_STREAM("The frequency of the loop is \t:" << freq;
+  }
+  else if (freq <0) {
+    ROS_ERROR_STREAM("The frequency of the input is negative. Cannot be negative");
+    ROS_WARN_STREAM("Setting to default frequency to 20Hz");
+    freq = 20;
+  }
+  else if (freq == 0) {
+    ROS_FATAL_STREAM("Frequency is 0. Input frequency cannot be 0");
+    ROS_WARN_STREAM("Setting to default frequency to 20Hz");
+  }
+   
   /**
    * NodeHandle is the main access point to communications with the ROS system.
    * The first NodeHandle constructed will fully initialize this node, and the last
@@ -82,9 +123,9 @@ int main(int argc, char **argv) {
 // %Tag(PUBLISHER)%
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 // %EndTag(PUBLISHER)%
-
+  auto server = n.advertiseService("Custome_message",customeMsg);
 // %Tag(LOOP_RATE)%
-  ros::Rate loop_rate(10);
+  ros::Rate loop_rate(freq);
 // %EndTag(LOOP_RATE)%
 
   /**
@@ -102,7 +143,7 @@ int main(int argc, char **argv) {
     std_msgs::String msg;
 
     std::stringstream ss;
-    ss << "My name is Charan Karthikeyan  " << count;
+    ss << defaultMessage << count;
     msg.data = ss.str();
 // %EndTag(FILL_MESSAGE)%
 

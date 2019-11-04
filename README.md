@@ -66,7 +66,11 @@ cpplint $( find . -name \*.hpp -or -name \*.cpp | grep -vE -e "^./build/" -e "^.
 
 ```
 The results from the checks have been added as a text file.
-![Image of output]()  
+</p>
+<p align="center">
+<img src="/images/out.png">
+</p>
+</p>
 #Dependencies and Assumptions
 ROS Kinetic is installed in the computer and working correctly and there is no other package with the same name in the workspace.
 

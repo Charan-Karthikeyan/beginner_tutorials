@@ -2,6 +2,5 @@
 string inp_message
 ---
 #giving the input to the called service
-bool sucess
 string out_message
 

@@ -1,34 +1,36 @@
-/*
- * Copyright (C) 2017, Charan Karthikeyan Parthasarathy Vasanthi.
+/**Copyright (c) 2019, Charan Karthikeyan Parthasarathy Vasanthi
+ *All rights reserved.
+
+ *Redistribution and use in source and binary forms, with or without
+ *modification, are permitted provided that the following conditions are met:
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *   * Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer.
- *   * Redistributions in binary form must reproduce the above copyright
- *     notice, this list of conditions and the following disclaimer in the
- *     documentation and/or other materials provided with the distribution.
- *   * Neither the names of Stanford University or Willow Garage, Inc. nor the names of its
- *     contributors may be used to endorse or promote products derived from
- *     this software without specific prior written permission.
+ *1. Redistributions of source code must retain the above copyright notice, this
+ *  list of conditions and the following disclaimer.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
+ *2. Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+
+ *3. Neither the name of the copyright holder nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+
+ *THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ *AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ *IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ *DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ *FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ *DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ *SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ *CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ *OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
 /**
  * @file talker.cpp
  * @author Charan Karthikeyan Parthasarathy Vasanthi
- * @copyright MIT
+ * @copyright BSD-3-Clause
  * @brief Publisher for simple publishing and subcribing from ros tutorial page
 */
 
@@ -47,11 +49,11 @@ extern std::string defaultMessage = "This ouput has been changed by Charan";
  * @param response-The response by te service to the client
  * @return bool
 */
-bool customeMsg(begginer_tutorials::custome_message_service::Request &request,
-		beginner_tutorials::custome_message_service::Response &response) {
-  defaultMessage = request.inp_message;
+bool customeMsg(beginner_tutorials::custome_message_service::Request &requ,
+                beginner_tutorials::custome_message_service::Response &resp) {
+  defaultMessage = requ.inp_message;
   ROS_WARN_STREAM("Changed to the string set by Charan to");
-  response.out_message = request.inp_message;
+  resp.out_message = requ.inp_message;
   return true;
 }
 
@@ -82,26 +84,23 @@ int main(int argc, char **argv) {
     freq = atoi(argv[1]);
   }
   if (freq > 0) {
-    ROS_DEBUG_STREAM("The frequency of the loop is \t:" << freq;
-  }
-  else if (freq <0) {
-    ROS_ERROR_STREAM("The frequency of the input is negative. Cannot be negative");
+    ROS_DEBUG_STREAM("The frequency of the loop is \t:" << freq);
+  } else if (freq < 0) {
+    ROS_ERROR_STREAM("The frequency cannot be negative");
     ROS_WARN_STREAM("Setting to default frequency to 20Hz");
     freq = 20;
-  }
-  else if (freq == 0) {
+  } else if (freq == 0) {
     ROS_FATAL_STREAM("Frequency is 0. Input frequency cannot be 0");
     ROS_WARN_STREAM("Setting to default frequency to 20Hz");
   }
-   
   /**
    * NodeHandle is the main access point to communications with the ROS system.
    * The first NodeHandle constructed will fully initialize this node, and the last
    * NodeHandle destructed will close down the node.
    */
-// %Tag(NODEHANDLE)%
+
   ros::NodeHandle n;
-// %EndTag(NODEHANDLE)%
+
 
   /**
    * The advertise() function is how you tell ROS that you want to
@@ -120,10 +119,10 @@ int main(int argc, char **argv) {
    * than we can send them, the number here specifies how many messages to
    * buffer up before throwing some away.
    */
-// %Tag(PUBLISHER)%
+
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
-// %EndTag(PUBLISHER)%
-  auto server = n.advertiseService("Custome_message",customeMsg);
+  ros::ServiceServer server = n.advertiseService("customeMsg", customeMsg);
+
 // %Tag(LOOP_RATE)%
   ros::Rate loop_rate(freq);
 // %EndTag(LOOP_RATE)%
@@ -174,4 +173,3 @@ int main(int argc, char **argv) {
 
   return 0;
 }
-// %EndTag(FULLTEXT)%

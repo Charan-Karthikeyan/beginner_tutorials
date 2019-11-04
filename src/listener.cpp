@@ -32,12 +32,24 @@
 /**
  * This tutorial demonstrates simple receipt of messages over the ROS system.
  */
+
+/**
+ * @brief Function for the chatter topic
+ * @param msg-The message from the publisher
+ * @return None
+*/
 // %Tag(CALLBACK)%
 void chatterCallback(const std_msgs::String::ConstPtr& msg) {
   ROS_INFO("I heard: [%s]", msg->data.c_str());
 }
 // %EndTag(CALLBACK)%
 
+/**
+ * @brief The main function for the listner 
+ * @param argc-The value of argc
+ * @param argv-The value of argv
+ * @return None
+*/
 int main(int argc, char **argv) {
   /**
    * The ros::init() function needs to see argc and argv so that it can perform

@@ -33,7 +33,7 @@
  * @copyright BSD-3-Clause
  * @brief Publisher for simple publishing and subcribing from ros tutorial page
 */
-
+#include <tf/transform_broadcaster.h>
 #include <sstream>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
@@ -78,6 +78,8 @@ int main(int argc, char **argv) {
    */
 // %Tag(INIT)%
   ros::init(argc, argv, "talker");
+  static tf::TransformBroadcaster tf_br;
+  tf::Transform trans;
 // %EndTag(INIT)%
   int freq = 20;
   if (argc > 1) {
@@ -159,7 +161,13 @@ int main(int argc, char **argv) {
 // %Tag(PUBLISH)%
     chatter_pub.publish(msg);
 // %EndTag(PUBLISH)%
-
+    trans.setOrigin(tf::Vector3(cos(ros::Time::now().toSec()),
+                    sin(ros::Time::now().toSec()),0.0));
+    tf::Quaternion q;
+    q.setRPY(0,0,1);
+    trans.setRotation(q);
+    tf_br.sendTransform(tf::StampedTransform(trans,ros::Time::now(),"hello", 
+                       "bye"));
 // %Tag(SPINONCE)%
     ros::spinOnce();
 // %EndTag(SPINONCE)%

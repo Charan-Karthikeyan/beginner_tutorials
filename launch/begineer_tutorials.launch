@@ -6,6 +6,7 @@
   />
 
    <arg name = "frequency" default = "20" />
+   <arg name = "rosbagEnable" default = "false" />
    <node
 	pkg = "beginner_tutorials"
 	type = "talker"
@@ -20,5 +21,12 @@
 	name = "listener"
 	output = "screen"
 	launch-prefix = "gnome-terminal -e"
+    />
+   <node 
+        pkg = "rosbag"
+        type = "record"
+        name = "record"
+        args ="-a -O rostopicsRecord.bag"
+        if = "$(rosbagEnable)"
     />
 </launch>

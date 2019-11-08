@@ -52,7 +52,8 @@ TEST(talkerTest_Node, testService_existance) {
   // Create node handle
   ros::NodeHandle n;
   // Regestering the client to the service file
-  auto client = n.serviceClient<beginner_tutorials::custome_message_service>("customeMessage");
+  ros::ServiceClient client = n.serviceClient<beginner_tutorials::
+      custome_message_service>("customeMessage");
   // checking if the service is available or not.
   EXPECT_TRUE(client.waitForExistence(ros::Duration(5)));
 }

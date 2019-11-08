@@ -212,5 +212,23 @@ add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 add_dependencies(listener beginner_tutorials_generate_messages_cpp)
 
-
+#Testing block
+if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+  add_rostest_gtest(
+  talker_test
+  test/test.launch
+  test/main.cpp
+  test/talker_test.cpp
+  )
+  target_link_libraries(
+  talker_test
+  ${catkin_LIBRARIES}
+  )
+  add_dependencies(
+  talker
+  talker_test
+  ${catkin_EXPORTED_TARGETS}
+  )
+endif()
 

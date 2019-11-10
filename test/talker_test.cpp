@@ -44,17 +44,41 @@
 #include "std_msgs/String.h"
 
 /**
- * @brief      Tests for the availability of the test
- * @param      talkerTest_node - the google test framework
- * @param      testService_existance - name of the test to be 
+ * @brief Tests for the availability of the test
+ * @param talkerTest_node - the google test framework
+ * @param testService_existance - name of the test to be run
  */
 TEST(talkerTest_Node, testService_existance) {
   // Create node handle
   ros::NodeHandle n;
   // Regestering the client to the service file
   ros::ServiceClient client = n.serviceClient<beginner_tutorials::
-      custome_message_service>("customeMessage");
+      custome_message_service>("customeMsg");
   // checking if the service is available or not.
   EXPECT_TRUE(client.waitForExistence(ros::Duration(5)));
 }
+
+/**
+ * @brief Testing if the custome_message_service changes 
+ * the text in the talker node 
+ * @param talkerTest_Node - the google test framework
+ * @param testMessageUpdate - name of the test to be run
+ */
+TEST(talkerTest_Node, testMessageUpdate) {
+  // Create node handle
+  ros::NodeHandle n;
+
+  // Register the client to the service file 
+  ros::ServiceClient client = n.serviceClient<beginner_tutorials::
+  custome_message_service>("customeMsg");
+  // Initialize the service function to srv object
+  beginner_tutorials::custome_message_service srv;
+
+  // Input for the input in the service file
+  srv.request.inp_message = "changed_message";
+  client.call(srv.request, srv.response);
+  // Compares the output with the expected output to test the service file.
+  EXPECT_STREQ("changed_message", srv.response.out_message.c_str());
+}
+
 

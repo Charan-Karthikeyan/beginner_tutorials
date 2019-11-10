@@ -214,7 +214,7 @@ add_dependencies(listener beginner_tutorials_generate_messages_cpp)
 
 #Testing block
 if(CATKIN_ENABLE_TESTING)
-  find_package(rostest REQUIRED)
+ find_package(rostest REQUIRED)
   add_rostest_gtest(
   talker_test
   test/test.launch
@@ -230,5 +230,6 @@ if(CATKIN_ENABLE_TESTING)
   talker_test
   ${catkin_EXPORTED_TARGETS}
   )
+
 endif()
 

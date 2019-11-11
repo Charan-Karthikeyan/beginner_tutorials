@@ -68,7 +68,7 @@ TEST(talkerTest_Node, testMessageUpdate) {
   // Create node handle
   ros::NodeHandle n;
 
-  // Register the client to the service file 
+  // Register the client to the service file
   ros::ServiceClient client = n.serviceClient<beginner_tutorials::
   custome_message_service>("customeMsg");
   // Initialize the service function to srv object

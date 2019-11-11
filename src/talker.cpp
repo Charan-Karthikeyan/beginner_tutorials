@@ -166,7 +166,7 @@ int main(int argc, char **argv) {
     tf::Quaternion q;
     q.setRPY(0, 0, 1);
     trans.setRotation(q);
-    tf_br.sendTransform(tf::StampedTransform(trans, ros::Time::now(), "world", 
+    tf_br.sendTransform(tf::StampedTransform(trans, ros::Time::now(), "world",
                        "talk"));
 // %Tag(SPINONCE)%
     ros::spinOnce();

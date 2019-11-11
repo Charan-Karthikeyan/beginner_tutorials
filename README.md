@@ -120,7 +120,7 @@ The rosbag has been used to read and save all the outputs from the nodes when th
 The record the values we have to run the following command
 The command should be run in the folder that the rosbag file is to be created.
 ```
-rosbag record --duration=10 -a -O rostopicsRecord.bag
+rosbag record --duration=15 -a -O rostopicsRecord.bag
 ```
 This saves the code for 10 seconds and writes it to a rosbag file.
 The saved files can then be run by using 

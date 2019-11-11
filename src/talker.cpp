@@ -162,11 +162,11 @@ int main(int argc, char **argv) {
     chatter_pub.publish(msg);
 // %EndTag(PUBLISH)%
     trans.setOrigin(tf::Vector3(cos(ros::Time::now().toSec()),
-                    sin(ros::Time::now().toSec()),0.0));
+                    sin(ros::Time::now().toSec()), 0.0));
     tf::Quaternion q;
-    q.setRPY(0,0,1);
+    q.setRPY(0, 0, 1);
     trans.setRotation(q);
-    tf_br.sendTransform(tf::StampedTransform(trans,ros::Time::now(),"world", 
+    tf_br.sendTransform(tf::StampedTransform(trans, ros::Time::now(), "world", 
                        "talk"));
 // %Tag(SPINONCE)%
     ros::spinOnce();

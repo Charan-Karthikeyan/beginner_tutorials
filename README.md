@@ -146,6 +146,7 @@ The results from the checks have been added as a text file.
 
 
 #ROS funtions
+
 To see the node graph run the following commanding during execution of the package
 ```
 rqt_graph
@@ -160,6 +161,7 @@ rqt_console
 ROS Kinetic is installed in the computer and working correctly and there is no other package with the same name in the workspace.
 
 #Add tag to the branch
+
 Run this command inside the beginner_tutotials to create tag for the branch
 ```
 git tag -a Week11_HW_Release -m "week11_hw tag"
@@ -171,6 +173,7 @@ git tag
 this will show the tag of the branch.
 
 #Merge with Master
+
 To merge with the master. We have to shift to the master by typing in 
 ```
 git checkout master

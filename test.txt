@@ -1,0 +1,16 @@
+... logging to /home/charan/.ros/log/rostest-charan-Predator-G3-571-5028.log
+[ROSUNIT] Outputting test results to /home/charan/.ros/test_results/beginner_tutorials/rostest-test_test.xml
+[Testcase: testtalker_test] ... ok
+
+[ROSTEST]-----------------------------------------------------------------------
+
+[beginner_tutorials.rosunit-talker_test/testService_existance][passed]
+[beginner_tutorials.rosunit-talker_test/testMessageUpdate][passed]
+
+SUMMARY
+[32m * RESULT: SUCCESS[0m
+ * TESTS: 2
+ * ERRORS: 0
+ * FAILURES: 0
+
+rostest log file is in /home/charan/.ros/log/rostest-charan-Predator-G3-571-5028.log

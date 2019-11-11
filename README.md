@@ -6,10 +6,10 @@
 This a basic introduction to the usage of ROS nodes with the Publisher and the Subscriber. 
 The publisher and the subscriber have also been modified to C++11 standards and checked using the cppcheck and the cpplint.
 
-#License
+# License
 The repository is licensed using BSD-3-Clause license given in this link [LICENSE](https://choosealicense.com/licenses/bsd-3-clause/)
 
-#Build and Install the package
+# Build and Install the package
 ```
 cd
 #Create your workspace
@@ -28,7 +28,8 @@ catkin_make
 ```
 
 
-#Executiong the Package
+# Executiong the Package
+
 Open a terminal and run the command
 
 ```
@@ -63,13 +64,15 @@ In another terminal run the command to change the message in the talker
 rosservice call /customeMsg "hello" 
 ```
 This changes the output as follows
+
 </p>
 <p align="center">
 <img src="/images/out.png">
 </p>
 </p>
 
-#TF Frames
+# TF Frames
+
 The talker.cpp file has been changed to bradcast the static tf frames called talk with respect to the world in the frames.
 
 The whole process is controlled using ros time and is time stamped. The frames can be visualized using the following command 
@@ -87,13 +90,15 @@ rosrun tf view_frames
 ```
 This command generates a pdf and agviz document which can be viewed in the folder that you run in the folder.
 The output of the commands are shown in the image below
+
 </p>
 <p align="center">
 <img src="/images/tf_final.png">
 </p>
 </p>
 
-#Running the Unit Tests
+# Running the Unit Tests
+
 The unit tests are written in the test folder and can be launched using the launch file in the test folder.
 To run the unit test we have to run the following commands
 ```
@@ -109,7 +114,8 @@ This will show the following output
 </p>
 </p>
 
-#Rosbag record and play 
+# Rosbag record and play 
+
 The rosbag has been used to read and save all the outputs from the nodes when they run.
 The record the values we have to run the following command
 The command should be run in the folder that the rosbag file is to be created.
@@ -123,13 +129,14 @@ rosrun beginner_tutorials listner
 rosbag play rostopicsRecord.bag
 ```
 The output will be as shown below
+
 </p>
 <p align="center">
 <img src="/images/rosbag_out.png">
 </p>
 </p>
 
-#Results from cpplint and cppcheck
+# Results from cpplint and cppcheck
 
 To get the output from the cppcheck
 ```
@@ -145,7 +152,7 @@ cpplint $( find . -name \*.hpp -or -name \*.cpp | grep -vE -e "^./build/" -e "^.
 The results from the checks have been added as a text file.
 
 
-#ROS funtions
+# ROS funtions
 
 To see the node graph run the following commanding during execution of the package
 ```
@@ -156,11 +163,11 @@ To see the message logging in real-time run the following command
 rqt_console
 ```
 
-#Dependencies and Assumptions
+# Dependencies and Assumptions
 
 ROS Kinetic is installed in the computer and working correctly and there is no other package with the same name in the workspace.
 
-#Add tag to the branch
+# Add tag to the branch
 
 Run this command inside the beginner_tutotials to create tag for the branch
 ```
@@ -172,7 +179,7 @@ git tag
 ```
 this will show the tag of the branch.
 
-#Merge with Master
+# Merge with Master
 
 To merge with the master. We have to shift to the master by typing in 
 ```

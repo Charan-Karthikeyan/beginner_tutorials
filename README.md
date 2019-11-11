@@ -69,7 +69,7 @@ This changes the output as follows
 </p>
 </p>
 
-## TF Frames
+#TF Frames
 The talker.cpp file has been changed to bradcast the static tf frames called talk with respect to the world in the frames.
 
 The whole process is controlled using ros time and is time stamped. The frames can be visualized using the following command 
@@ -93,7 +93,7 @@ The output of the commands are shown in the image below
 </p>
 </p>
 
-## Running the Unit Tests
+#Running the Unit Tests
 The unit tests are written in the test folder and can be launched using the launch file in the test folder.
 To run the unit test we have to run the following commands
 ```
@@ -102,14 +102,14 @@ catkin_make
 rostest beginner_tutorials test.launch
 ```
 This will show the following output
-```
+
 </p>
 <p align="center">
 <img src="/images/unit_test.png">
 </p>
 </p>
 
-## Rosbag record and play 
+#Rosbag record and play 
 The rosbag has been used to read and save all the outputs from the nodes when they run.
 The record the values we have to run the following command
 The command should be run in the folder that the rosbag file is to be created.
@@ -128,7 +128,8 @@ The output will be as shown below
 <img src="/images/rosbag_out.png">
 </p>
 </p>
-## Results from cpplint and cppcheck
+
+#Results from cpplint and cppcheck
 
 To get the output from the cppcheck
 ```

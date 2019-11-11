@@ -69,7 +69,65 @@ This changes the output as follows
 </p>
 </p>
 
+## TF Frames
+The talker.cpp file has been changed to bradcast the static tf frames called talk with respect to the world in the frames.
 
+The whole process is controlled using ros time and is time stamped. The frames can be visualized using the following command 
+in a terminal
+```
+rosrun rqt_tf_tree rqt_tf_tree
+```
+To look at the values through the echo module we have to run the following command in a new terminal
+```
+rosrun tf tf_echo /world /talk
+```
+To generate and view the frames we use the following command
+```
+rosrun tf view_frames
+```
+This command generates a pdf and agviz document which can be viewed in the folder that you run in the folder.
+The output of the commands are shown in the image below
+</p>
+<p align="center">
+<img src="/images/tf_final.png">
+</p>
+</p>
+
+## Running the Unit Tests
+The unit tests are written in the test folder and can be launched using the launch file in the test folder.
+To run the unit test we have to run the following commands
+```
+cd ~/catkin_ws
+catkin_make
+rostest beginner_tutorials test.launch
+```
+This will show the following output
+```
+</p>
+<p align="center">
+<img src="/images/unit_test.png">
+</p>
+</p>
+
+## Rosbag record and play 
+The rosbag has been used to read and save all the outputs from the nodes when they run.
+The record the values we have to run the following command
+The command should be run in the folder that the rosbag file is to be created.
+```
+rosbag record --duration=10 -a -O rostopicsRecord.bag
+```
+This saves the code for 10 seconds and writes it to a rosbag file.
+The saved files can then be run by using 
+```
+rosrun beginner_tutorials listner
+rosbag play rostopicsRecord.bag
+```
+The output will be as shown below
+</p>
+<p align="center">
+<img src="/images/rosbag_out.png">
+</p>
+</p>
 ## Results from cpplint and cppcheck
 
 To get the output from the cppcheck
@@ -103,13 +161,25 @@ ROS Kinetic is installed in the computer and working correctly and there is no o
 #Add tag to the branch
 Run this command inside the beginner_tutotials to create tag for the branch
 ```
-git tag -a week10hw -m "week10_hw tag"
+git tag -a Week11_HW_Release -m "week11_hw tag"
 ```
 to check the tags. Type in 
 ```
 git tag
 ```
 this will show the tag of the branch.
+
+#Merge with Master
+To merge with the master. We have to shift to the master by typing in 
+```
+git checkout master
+```
+Then type
+```
+git merge origin Week11_HW
+```
+This will merge with the master branch. If any conflicts arise it will automatically resolve them. If not they 
+have to be manually rectified and pushed.
 
 
 

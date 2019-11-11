@@ -3,3 +3,8 @@
 Done processing ./src/listener.cpp
 Done processing ./src/talker.cpp
 Total errors found: 2
+Done processing ./src/listener.cpp
+Done processing ./src/talker.cpp
+Done processing ./test/talker_test.cpp
+Done processing ./test/main.cpp
+Total errors found: 2
